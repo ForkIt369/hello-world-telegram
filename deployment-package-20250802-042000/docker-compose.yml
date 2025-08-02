@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  hello-world:
+    build: .
+    container_name: hello-world-app
+    restart: unless-stopped
+    networks:
+      - web
+    environment:
+      - VIRTUAL_HOST=hello-world.broquests.com
+      - LETSENCRYPT_HOST=hello-world.broquests.com
+      - LETSENCRYPT_EMAIL=admin@broquests.com
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hello-world.rule=Host(`hello-world.broquests.com`)"
+      - "traefik.http.routers.hello-world.tls=true"
+      - "traefik.http.routers.hello-world.tls.certresolver=letsencrypt"
+      - "traefik.http.services.hello-world.loadbalancer.server.port=80"
+
+networks:
+  web:
+    external: true

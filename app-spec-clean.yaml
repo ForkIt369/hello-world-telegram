@@ -1,0 +1,33 @@
+name: hello-world-telegram
+region: nyc
+static_sites:
+- build_command: npm install && npm run build
+  environment_slug: node-js
+  envs:
+  - key: VITE_TELEGRAM_BOT_TOKEN
+    scope: BUILD_TIME
+    value: 7785428060:AAHUPeU5hxdU5GA2lrllBXs3A7iq0rzq0pg
+  - key: VITE_TELEGRAM_BOT_USERNAME
+    scope: BUILD_TIME
+    value: hello_world_bot
+  - key: VITE_WEBAPP_URL
+    scope: BUILD_TIME
+    value: https://hello-world.broquests.com
+  - key: VITE_ENABLE_PAYMENTS
+    scope: BUILD_TIME
+    value: "true"
+  - key: VITE_ENABLE_CLOUD_STORAGE
+    scope: BUILD_TIME
+    value: "true"
+  - key: VITE_ENABLE_NOTIFICATIONS
+    scope: BUILD_TIME
+    value: "true"
+  name: hello-world
+  output_dir: dist
+  routes:
+  - path: /
+  source_dir: /
+domains:
+- domain: hello-world.broquests.com
+  type: PRIMARY
+  zone: broquests.com

@@ -1,0 +1,17 @@
+name: hello-world-telegram
+region: nyc
+static_sites:
+- build_command: npm install && npm run build
+  environment_slug: node-js
+  github:
+    repo: ForkIt369/hello-world-telegram
+    branch: master
+    deploy_on_push: true
+  name: hello-world
+  output_dir: dist
+  routes:
+  - path: /
+domains:
+- domain: hello-world.broquests.com
+  type: PRIMARY
+  zone: broquests.com
